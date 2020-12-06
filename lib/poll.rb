@@ -17,4 +17,13 @@ class Poll
 
     @votes.push(vote)
   end
+
+  def count_votes
+    result = {}
+    candidates.map { |candidate| result[candidate] = 0}
+    votes.each do |vote|
+      result[vote.candidate] += 1
+    end
+    result.sort_by { |k, v| v }.reverse.to_h
+  end
 end
